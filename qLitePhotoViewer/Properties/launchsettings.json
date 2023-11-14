@@ -1,0 +1,10 @@
+﻿{
+    "profiles": {
+      "qLitePhotoViewer (Package)": {
+        "commandName": "MsixPackage"
+      },
+      "qLitePhotoViewer (Unpackaged)": {
+        "commandName": "Project"
+      }
+    }
+}

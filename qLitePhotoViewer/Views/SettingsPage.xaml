@@ -1,0 +1,262 @@
+﻿<Page
+    x:Class="qLitePhotoViewer.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:helpers="using:qLitePhotoViewer.Helpers"
+    xmlns:xaml="using:Microsoft.UI.Xaml" 
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <helpers:BackdropTypeToStringConverter x:Key="BackdropTypeToStringConverter" />
+    </Page.Resources>
+    <Grid>
+        <StackPanel x:Name="ContentArea">
+            <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
+                <TextBlock Text="Appearance" Style="{ThemeResource BodyStrongTextBlockStyle}" />
+                <Button
+                    Margin="{StaticResource XSmallTopMargin}"
+                    Padding="10"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch">
+                    <Border HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                        <controls:DockPanel LastChildFill="True">
+                            <StackPanel controls:DockPanel.Dock="Left" Orientation="Horizontal">
+                                <FontIcon
+                                    Margin="5,0,5,0"
+                                    FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                    Glyph="&#xe790;" />
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock
+                                        Margin="10,0,0,0"
+                                        VerticalAlignment="Center"
+                                        Text="Theme" />
+                                    <TextBlock
+                                        Margin="10,0,0,0"
+                                        VerticalAlignment="Center"
+                                        FontSize="12"
+                                        Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
+                                        Text="Choose your theme" />
+                                </StackPanel>
+                            </StackPanel>
+                            <DropDownButton
+                                Width="125"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                HorizontalContentAlignment="Left"
+                                Content="{x:Bind ViewModel.CurrentTheme, Mode=OneWay}"
+                                FontSize="15">
+                                <DropDownButton.Flyout>
+                                    <MenuFlyout Placement="Bottom">
+                                        <MenuFlyoutItem
+                                            Command="{x:Bind ViewModel.SwitchThemeCommand}"
+                                            CommandParameter="{x:Bind xaml:ElementTheme.Light}"
+                                            FontSize="15"
+                                            Text="Light">
+                                            <MenuFlyoutItem.Icon>
+                                                <FontIcon
+                                                    FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                                    FontSize="15"
+                                                    Glyph="&#xe793;" />
+                                            </MenuFlyoutItem.Icon>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem
+                                            Command="{x:Bind ViewModel.SwitchThemeCommand}"
+                                            CommandParameter="{x:Bind xaml:ElementTheme.Dark}"
+                                            FontSize="15"
+                                            Text="Dark">
+                                            <MenuFlyoutItem.Icon>
+                                                <FontIcon
+                                                    FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                                    FontSize="15"
+                                                    Glyph="&#xE708;" />
+                                            </MenuFlyoutItem.Icon>
+                                        </MenuFlyoutItem>
+                                        <MenuFlyoutItem
+                                            Command="{x:Bind ViewModel.SwitchThemeCommand}"
+                                            CommandParameter="{x:Bind xaml:ElementTheme.Default}"
+                                            FontSize="15"
+                                            Text="Default">
+                                            <MenuFlyoutItem.Icon>
+                                                <FontIcon
+                                                    FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                                    FontSize="15"
+                                                    Glyph="&#xE713;" />
+                                            </MenuFlyoutItem.Icon>
+                                        </MenuFlyoutItem>
+                                    </MenuFlyout>
+                                </DropDownButton.Flyout>
+                            </DropDownButton>
+                        </controls:DockPanel>
+                    </Border>
+                </Button>
+
+                <Button
+                    Margin="{StaticResource XSmallTopMargin}"
+                    Padding="10"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch">
+                    <Border HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                        <controls:DockPanel LastChildFill="True">
+                            <StackPanel controls:DockPanel.Dock="Left" Orientation="Horizontal">
+                                <FontIcon
+                                    Margin="5,0,5,0"
+                                    FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                    Glyph="&#xf5ed;" />
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock
+                                        Margin="10,0,0,0"
+                                        VerticalAlignment="Center"
+                                        Text="Backdrop" />
+                                    <TextBlock
+                                        Margin="10,0,0,0"
+                                        VerticalAlignment="Center"
+                                        FontSize="12"
+                                        Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
+                                        Text="Choose the system backdrop that appears in this app" />
+                                </StackPanel>
+                            </StackPanel>
+                            <DropDownButton
+                                Width="125"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                HorizontalContentAlignment="Left"
+                                Content="{x:Bind ViewModel.BackDrop, Mode=OneWay, Converter={StaticResource BackdropTypeToStringConverter}}"
+                                FontSize="15">
+                                <DropDownButton.Flyout>
+                                    <MenuFlyout Placement="Bottom">
+                                        <MenuFlyoutItem
+                                            Command="{x:Bind ViewModel.SwitchBackdropCommand}"
+                                            CommandParameter="{x:Bind ViewModel.Mica, Mode=OneWay}"
+                                            FontSize="15"
+                                            Text="Mica" />
+                                        <MenuFlyoutItem
+                                            Command="{x:Bind ViewModel.SwitchBackdropCommand}"
+                                            CommandParameter="{x:Bind ViewModel.MicaAlt, Mode=OneWay}"
+                                            FontSize="15"
+                                            Text="Mica Alt" />
+                                        <MenuFlyoutItem
+                                            Command="{x:Bind ViewModel.SwitchBackdropCommand}"
+                                            CommandParameter="{x:Bind ViewModel.DesktopAcrylic}"
+                                            FontSize="15"
+                                            Text="Acrylic" />
+                                    </MenuFlyout>
+                                </DropDownButton.Flyout>
+                            </DropDownButton>
+                        </controls:DockPanel>
+                    </Border>
+                </Button>
+            </StackPanel>
+
+            <TextBlock Text="General" Style="{ThemeResource BodyStrongTextBlockStyle}" />
+
+            <Button
+                Margin="{StaticResource XSmallTopMargin}"
+                Padding="10"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch">
+                <Border HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                    <controls:DockPanel HorizontalAlignment="Stretch" LastChildFill="True">
+                        <StackPanel controls:DockPanel.Dock="Left" Orientation="Horizontal">
+                            <FontIcon
+                                Margin="5,0,5,0"
+                                FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                Glyph="&#xE81E;" />
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Always on Top" Margin="10,0,0,0" />
+                                <TextBlock
+                                    Text="Set this application to always be on top"
+                                    Margin="10,0,0,0"
+                                    FontSize="12"
+                                    Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+                            </StackPanel>
+                        </StackPanel>
+                        <DropDownButton
+                            Width="125"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            HorizontalContentAlignment="Left"
+                            Content="{x:Bind ViewModel.CurrentAlwaysOnTop, Mode=OneWay}"
+                            FontSize="15">
+                            <DropDownButton.Flyout>
+                                <MenuFlyout Placement="Bottom">
+                                    <MenuFlyoutItem
+                                        Command="{x:Bind ViewModel.SwitchAlwaysOnTopCommand}"
+                                        CommandParameter="{x:Bind ViewModel.AlwaysOnTopEnabled}"
+                                        FontSize="15"
+                                        Text="Enabled" />
+                                    <MenuFlyoutItem
+                                        Command="{x:Bind ViewModel.SwitchAlwaysOnTopCommand}"
+                                        CommandParameter="{x:Bind ViewModel.AlwaysOnTopDisabled}"
+                                        FontSize="15"
+                                        Text="Disabled" />
+                                </MenuFlyout>
+                            </DropDownButton.Flyout>
+                        </DropDownButton>
+                    </controls:DockPanel>
+                </Border>
+            </Button>
+            <TextBlock
+                Text="About"
+                Margin="{StaticResource XSmallTopMargin}"
+                Style="{ThemeResource BodyStrongTextBlockStyle}" />
+
+            <Button
+                Margin="{StaticResource XSmallTopMargin}"
+                Padding="10"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch">
+                <Border HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                    <controls:DockPanel LastChildFill="True">
+                        <StackPanel controls:DockPanel.Dock="Left" Orientation="Horizontal">
+                            <FontIcon
+                                Margin="5,0,5,0"
+                                FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                Glyph="{x:Bind ViewModel.ThemeGlyph, Mode=OneWay}" />
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Margin="10,0,0,0" Text="{x:Bind ViewModel.VersionDescription, Mode=OneWay}" />
+                                <TextBlock
+                                    Text="A lightweight photo-viewer for the general public"
+                                    Margin="10,0,0,0"
+                                    FontSize="12"
+                                    Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </controls:DockPanel>
+                </Border>
+            </Button>
+
+            <StackPanel Margin="{StaticResource XSmallTopMargin}" Orientation="Horizontal">
+                <Button Command="{x:Bind ViewModel.OpenGitHubCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon
+                            Margin="0,0,0,0"
+                            FontFamily="{StaticResource SymbolThemeFontFamily}"
+                            Glyph="&#xe774;" />
+                        <TextBlock Margin="10,0,0,0" Text="GitHub" />
+                    </StackPanel>
+                </Button>
+                <Button Margin="{StaticResource XSmallLeftMargin}" Command="{x:Bind ViewModel.OpenIssueCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon
+                            Margin="0,0,0,0"
+                            FontFamily="{StaticResource SymbolThemeFontFamily}"
+                            Glyph="&#xe730;" />
+                        <TextBlock Margin="10,0,0,0" Text="Create Issue" />
+                    </StackPanel>
+                </Button>
+                <Button Margin="{StaticResource XSmallLeftMargin}" Command="{x:Bind ViewModel.OpenLicenseCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon
+                            Margin="0,0,0,0"
+                            FontFamily="{StaticResource SymbolThemeFontFamily}"
+                            Glyph="&#xea18;" />
+                        <TextBlock Margin="10,0,0,0" Text="License" />
+                    </StackPanel>
+                </Button>
+
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

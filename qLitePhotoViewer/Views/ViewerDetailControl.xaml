@@ -1,0 +1,31 @@
+﻿<UserControl
+    x:Class="qLitePhotoViewer.Views.ViewerDetailControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" CornerRadius="10">
+    <Border CornerRadius="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <ScrollViewer
+            Margin="10, 0, 0, 20"
+            Name="ForegroundElement"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            HorizontalScrollMode="Enabled"
+            VerticalScrollMode="Enabled"
+            HorizontalScrollBarVisibility="Auto"
+            VerticalScrollBarVisibility="Auto"
+            ZoomMode="Enabled"
+            MaxZoomFactor="2.5">
+            <Border CornerRadius="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Image
+                    Source="{x:Bind PhotoDetails.ImagePath, Mode=OneWay}"
+                    Stretch="UniformToFill"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    UseLayoutRounding="True"/>
+            </Border>
+        </ScrollViewer>
+    </Border>
+</UserControl>
+
